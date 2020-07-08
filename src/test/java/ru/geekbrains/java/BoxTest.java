@@ -26,20 +26,19 @@ public class BoxTest {
     @Test
     public void checkBox(){
 
-       // Box<Fruit> box= new Box<>(new Apple(),new Apple(), new Orange() );
         Box<Apple> boxWithApples=new Box<>(new Apple(), new Apple());
         Box<Apple> anotherBoxWithApples = new Box<>(new Apple(), new Apple(), new Apple(),new Apple());
         Box<Orange> boxWithOrange=new Box<>(new Orange(), new Orange(), new Orange());
 
-        Assert.assertEquals(2.0f, boxWithApples.getWeight(),0.0001f);
-        Assert.assertEquals(4.5f, boxWithOrange.getWeight(), 0.0001f);
+        Assert.assertEquals(2.0f, boxWithApples.getWeight(),0.001f);
+        Assert.assertEquals(4.5f, boxWithOrange.getWeight(), 0.001f);
 
         boxWithApples.add(new Apple());
         Assert.assertFalse(boxWithApples.compare(boxWithOrange));
 
         boxWithApples.sprinkle(anotherBoxWithApples);
-        System.out.println(boxWithApples.getWeight());
-        System.out.println(anotherBoxWithApples.getWeight());
+        Assert.assertEquals(0.0f,boxWithApples.getWeight(), 0.001f);
+        Assert.assertEquals(7.0f,anotherBoxWithApples.getWeight(), 0.001f);
 
     }
 
